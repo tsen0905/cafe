@@ -15,7 +15,7 @@
 
 本系統採用微服務架構設計，分為前端、後端與資料庫三個獨立容器：
 
-```mermaid
+```
 graph TD
     Client["使用者瀏覽器 / React App"]
 
