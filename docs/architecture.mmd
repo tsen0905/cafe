@@ -1,0 +1,12 @@
+graph TD
+    Client[Client Browser / React App]
+
+    subgraph Service Container
+        Frontend[Frontend Service :5173]
+        Backend[Backend API :3000]
+        DB[MongoDB :27017]
+    end
+
+    Client -->|HTTP / Interface| Frontend
+    Client -->|API Requests (Fetch)| Backend
+    Backend -->|Mongoose| DB

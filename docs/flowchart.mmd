@@ -1,0 +1,23 @@
+sequenceDiagram
+    participant User
+    participant React as React Frontend
+    participant API as Express API
+    participant DB as MongoDB
+
+    Note over User, DB: Create Order Flow
+
+    User->>React: Select Items & Click "Order"
+    React->>API: POST /api/orders
+    API->>DB: Insert Order
+    DB-->>API: Success
+    API-->>React: 201 Created (JSON)
+    React-->>User: Show Success Message & Update List
+
+    Note over User, DB: Update Status Flow
+    
+    User->>React: Change Status to "Done"
+    React->>API: PUT /api/orders/:id {status: 'done'}
+    API->>DB: Update Status
+    DB-->>API: Success
+    API-->>React: 200 OK (Updated Object)
+    React-->>User: Refresh Order List UI
