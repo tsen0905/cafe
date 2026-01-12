@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  mongo:
+    image: mongo:7
+    ports:
+      - "27018:27017" # Changed to 27018 to avoid conflict with local MongoDB
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - cafe-network
+
+  backend:
+    build: ./backend
+    ports:
+      - "3000:3000"
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/cafedb
+      - CORS_ORIGIN=http://localhost:5173
+    depends_on:
+      - mongo
+    networks:
+      - cafe-network
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "5173:5173"
+    environment:
+      - VITE_API_BASE=http://localhost:3000
+    depends_on:
+      - backend
+    networks:
+      - cafe-network
+
+volumes:
+  mongo-data:
+
+
+networks:
+  cafe-network:
+    driver: bridge
