@@ -17,12 +17,12 @@
 
 ```mermaid
 graph TD
-    Client[使用者瀏覽器 / React App]
+    Client["使用者瀏覽器 / React App"]
 
     subgraph "Docker 容器環境"
-        Frontend[前端服務 (Vite) :5173]
-        Backend[後端 API (Express) :3000]
-        DB[MongoDB 資料庫 :27017]
+        Frontend["前端服務 (Vite) :5173"]
+        Backend["後端 API (Express) :3000"]
+        DB["MongoDB 資料庫 :27017"]
     end
 
     Client -->|HTTP 請求 / 介面互動| Frontend
@@ -39,10 +39,10 @@ graph TD
 ### 訂單建立與狀態更新流程
 ```mermaid
 sequenceDiagram
-    participant User as 使用者 (店員)
-    participant React as 前端 (React)
-    participant API as 後端 (Express)
-    participant DB as 資料庫 (MongoDB)
+    participant User as "使用者 (店員)"
+    participant React as "前端 (React)"
+    participant API as "後端 (Express)"
+    participant DB as "資料庫 (MongoDB)"
 
     Note over User, DB: 建立訂單流程
 
